@@ -1,0 +1,23 @@
+{
+  "name": "genetic-algorithm.js",
+  "version": "0.0.0",
+  "description": "genetic algorithm engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "genetic",
+    "algorithm"
+  ],
+  "author": "Arnelle Balane <arnellebalane@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^5.8.12",
+    "babel-core": "^5.8.12",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-util": "^3.0.6"
+  }
+}
