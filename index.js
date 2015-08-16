@@ -8,8 +8,10 @@ var defaultOptions = {
 };
 
 
-function GeneticAlgorithm(options = {}) {
-    extend(this, { ...defaultOptions, ...options });
+class GeneticAlgorithm {
+    constructor(options = {}) {
+        extend(this, { ...defaultOptions, ...options });
+    }
 }
 
 
