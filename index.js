@@ -8,8 +8,8 @@ var defaultOptions = {
 };
 
 
-function GeneticAlgorithm(options) {
-    options = merge(defaultOptions, options || {});
+function GeneticAlgorithm(options = {}) {
+    options = merge(defaultOptions, options);
     extend(this, options);
 }
 
