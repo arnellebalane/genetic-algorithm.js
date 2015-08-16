@@ -2,7 +2,7 @@ import 'babel/polyfill';
 
 
 function merge(...objects) {
-    return objects.reduce((merged, item) => ({ ...merged, ...item }), {});
+    return objects.reduce((merged, item) => extend(merged, item), {});
 }
 
 
