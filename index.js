@@ -1,5 +1,5 @@
 import 'babel/polyfill';
-import utils from './utils';
+import { merge, extend } from './utils';
 
 
 var defaultOptions = {
@@ -9,8 +9,8 @@ var defaultOptions = {
 
 
 function GeneticAlgorithm(options) {
-    options = utils.merge(defaultOptions, options || {});
-    utils.extend(this, options);
+    options = merge(defaultOptions, options || {});
+    extend(this, options);
 }
 
 
