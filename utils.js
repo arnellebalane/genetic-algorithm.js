@@ -1,9 +1,6 @@
 import 'babel/polyfill';
 
 
-function noop() {}
-
-
 function merge(...objects) {
     return objects.reduce((merged, item) => ({ ...merged, ...item }), {});
 }
