@@ -8,8 +8,9 @@ var defaultOptions = {
 
 
 function GeneticAlgorithm(options) {
-    options = utils.extend(defaultOptions, options);
+    options = utils.merge(defaultOptions, options || {});
+    utils.extend(this, options);
 }
 
 
-module.export = GeneticAlgorithm;
+module.exports = GeneticAlgorithm;
