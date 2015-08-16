@@ -19,5 +19,8 @@
     "gulp-babel": "^5.1.0",
     "gulp-plumber": "^1.0.1",
     "gulp-util": "^3.0.6"
+  },
+  "dependencies": {
+    "webworker": "^0.8.4"
   }
 }
