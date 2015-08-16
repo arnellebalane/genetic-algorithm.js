@@ -21,7 +21,6 @@ function extend(base, extension) {
 }
 
 
-exports.noop = noop;
 exports.merge = merge;
 exports.items = items;
 exports.extend = extend;
