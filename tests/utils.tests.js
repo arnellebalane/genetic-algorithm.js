@@ -68,4 +68,20 @@ describe('utils', () => {
             expect(c.done).to.be(true);
         });
     });
+
+    describe('extend(base, extension)', () => {
+        it('should extend given object with given extension', () => {
+            var expected = { a: 'c', b: 'b' };
+            var actual = utils.extend({ a: 'a' }, { a: 'c', b: 'b' });
+            expect(actual).to.eql(expected);
+        });
+
+        it('should directly extend the given base object', () => {
+            var base = { a: 'a' };
+            var extension = { a: 'c', b: 'b' };
+            var expected = { a: 'c', b: 'b' };
+            utils.extend(base, extension);
+            expect(base).to.eql(expected);
+        });
+    });
 });
