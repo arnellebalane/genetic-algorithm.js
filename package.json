@@ -2,7 +2,7 @@
   "name": "genetic-algorithm.js",
   "version": "0.0.0",
   "description": "genetic algorithm engine",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha dist/tests"
   },
