@@ -39,4 +39,33 @@ describe('utils', () => {
             expect(object2).to.eql({ b: 'b' });
         });
     });
+
+    describe('items(object)', () => {
+        it('should return an iterator for the given object', () => {
+            var iterator = utils.items({ a: 'a', b: 'b' });
+            expect(iterator).to.have.property('next');
+            expect(iterator.next).to.be.a('function');
+            expect(iterator.next()).to.have.keys('value', 'done');
+        });
+
+        it('should be able to iterate the given object', () => {
+            var object = { a: 'a', b: 'b'};
+            var iterator = utils.items(object);
+
+            var a = iterator.next();
+            expect(a).to.have.keys('value', 'done');
+            expect(a.value).to.eql(['a', 'a']);
+            expect(a.done).to.be(false);
+
+            var b = iterator.next();
+            expect(b).to.have.keys('value', 'done');
+            expect(b.value).to.eql(['b', 'b']);
+            expect(b.done).to.be(false);
+
+            var c = iterator.next();
+            expect(c).to.have.keys('value', 'done');
+            expect(c.value).to.be(undefined);
+            expect(c.done).to.be(true);
+        });
+    });
 });
