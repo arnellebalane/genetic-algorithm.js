@@ -1,6 +1,6 @@
 import 'babel/polyfill';
 import expect from 'expect.js';
-import utils from '../utils';
+import * as utils from '../utils';
 
 
 describe('utils', () => {

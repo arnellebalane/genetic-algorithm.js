@@ -13,7 +13,7 @@ var properties = {
 };
 
 
-class GeneticAlgorithm {
+export default class GeneticAlgorithm {
     constructor(options = {}) {
         this.populationSize = 10;
         this.maxGenerations = 1000;
@@ -29,6 +29,3 @@ class GeneticAlgorithm {
         }
     }
 }
-
-
-module.exports = GeneticAlgorithm;
