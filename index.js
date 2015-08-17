@@ -23,8 +23,8 @@ export default class GeneticAlgorithm {
             if (value.required && !this.hasOwnProperty(key)) {
                 throw new Error(`Property "${key}" is required.`);
             } else if (value.type && typeof this[key] !== value.type) {
-                throw new Error(`Property "${key}" should be of type
-                    "${value.type}".`);
+                throw new Error(`Property "${key}" should be of type `
+                    + `"${value.type}".`);
             }
         }
     }
