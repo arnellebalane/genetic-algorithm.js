@@ -15,10 +15,12 @@
   "devDependencies": {
     "babel": "^5.8.12",
     "babel-core": "^5.8.12",
+    "expect.js": "^0.3.1",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.1.0",
     "gulp-plumber": "^1.0.1",
-    "gulp-util": "^3.0.6"
+    "gulp-util": "^3.0.6",
+    "mocha": "^2.2.5"
   },
   "dependencies": {
     "webworker": "^0.8.4"
