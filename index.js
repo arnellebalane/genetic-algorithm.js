@@ -2,7 +2,7 @@ import 'babel/polyfill';
 import { extend, items } from './utils';
 
 
-var properties = {
+const properties = {
     individual: { required: true, type: 'function' },
     recombine: { required: true, type: 'function' },
     mutate: { required: true, type: 'function' },
