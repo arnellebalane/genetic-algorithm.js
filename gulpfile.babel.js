@@ -4,7 +4,7 @@ import babel from 'gulp-babel';
 
 
 gulp.task('scripts', () => {
-    gulp.src(['index.js', 'utils.js', 'tests/**/*.js'], { base: '.' })
+    gulp.src(['src/**/*.js'], { base: 'src' })
         .pipe(plumber())
         .pipe(babel())
         .pipe(gulp.dest('dist'))
@@ -12,7 +12,7 @@ gulp.task('scripts', () => {
 
 
 gulp.task('watch', () => {
-    gulp.watch(['index.js', 'utils.js', 'tests/**/*.js'], ['scripts']);
+    gulp.watch(['src/**/*.js'], ['scripts']);
 });
 
 
