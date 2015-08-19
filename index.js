@@ -28,4 +28,12 @@ export default class GeneticAlgorithm {
             }
         }
     }
+
+    generatePopulation() {
+        var population = [];
+        for (let i = 0; i < this.populationSize; i++) {
+            population.push(this.individual());
+        }
+        return population;
+    }
 }
