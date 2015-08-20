@@ -17,6 +17,7 @@ export default class GeneticAlgorithm {
     constructor(options = {}) {
         this.populationSize = 10;
         this.maxGenerations = 1000;
+        this.survivalRate = 0.25;
         extend(this, options);
 
         for (let [key, value] of items(properties)) {
