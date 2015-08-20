@@ -36,9 +36,4 @@ export default class GeneticAlgorithm {
         }
         return population;
     }
-    
-    receiveMessage(message) {
-        let { command, data } = JSON.parse(message);
-        console.log(command, data);
-    }
 }
