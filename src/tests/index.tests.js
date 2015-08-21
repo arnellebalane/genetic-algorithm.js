@@ -1,5 +1,6 @@
 import 'babel/polyfill';
 import expect from 'expect.js';
+import sinon from 'sinon';
 import GeneticAlgorithm from '../index';
 
 
@@ -54,6 +55,21 @@ describe('GeneticAlgorithm', () => {
             var expected = [[], [], [], [], []];
             var actual = instance.generatePopulation();
             expect(actual).to.eql(expected);
+        });
+
+        it('should use `individual` method to generate population', () => {
+            var individual = sinon.spy();
+            var instance = new GeneticAlgorithm({
+                individual: individual,
+                recombine: () => {},
+                mutate: () => {},
+                fitness: () => {},
+                deconstruct: () => {},
+                reconstruct: () => {},
+                perfectFitness: 0
+            });
+            instance.generatePopulation();
+            expect(individual.callCount).to.be(instance.populationSize);
         });
     });
 });
