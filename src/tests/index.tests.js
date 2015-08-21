@@ -38,4 +38,22 @@ describe('GeneticAlgorithm', () => {
         })).to.not.throwError();
         expect(instance).to.be.a(GeneticAlgorithm);
     });
+
+    describe('generatePopulation()', () => {
+        it('should generate population with the correct size', () => {
+            var instance = new GeneticAlgorithm({
+                individual: () => [],
+                recombine: () => {},
+                mutate: () => {},
+                fitness: () => {},
+                deconstruct: () => {},
+                reconstruct: () => {},
+                perfectFitness: 0,
+                populationSize: 5
+            });
+            var expected = [[], [], [], [], []];
+            var actual = instance.generatePopulation();
+            expect(actual).to.eql(expected);
+        });
+    });
 });
