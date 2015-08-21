@@ -2,6 +2,21 @@ import 'babel/polyfill';
 import expect from 'expect.js';
 import sinon from 'sinon';
 import GeneticAlgorithm from '../index';
+import { merge } from '../utils';
+
+
+function geneticAlgorithmFactory(options = {}) {
+    var defaultOptions = {
+        individual: () => {},
+        recombine: () => {},
+        mutate: () => {},
+        fitness: () => {},
+        deconstruct: () => {},
+        reconstruct: () => {},
+        perfectFitness: 0
+    };
+    return new GeneticAlgorithm(merge(defaultOptions, options));
+}
 
 
 describe('GeneticAlgorithm', () => {
@@ -15,41 +30,20 @@ describe('GeneticAlgorithm', () => {
     });
 
     it('should throw error when given properties have incorrect type', () => {
-        expect(() => new GeneticAlgorithm({
-            individual: false,
-            recombine: () => {},
-            mutate: () => {},
-            fitness: () => {},
-            deconstruct: () => {},
-            reconstruct: () => {},
-            perfectFitness: 0
-        })).to.throwError(/Property "\w+" should be of type "\w+"\./);
+        expect(() => geneticAlgorithmFactory({ individual: false }))
+            .to.throwError(/Property "\w+" should be of type "\w+"\./);
     });
 
     it('should create new instance when given correct properties', () => {
         var instance = null;
-        expect(() => instance = new GeneticAlgorithm({
-            individual: () => {},
-            recombine: () => {},
-            mutate: () => {},
-            fitness: () => {},
-            deconstruct: () => {},
-            reconstruct: () => {},
-            perfectFitness: 0
-        })).to.not.throwError();
+        expect(() => instance = geneticAlgorithmFactory()).to.not.throwError();
         expect(instance).to.be.a(GeneticAlgorithm);
     });
 
     describe('generatePopulation()', () => {
         it('should generate population with the correct size', () => {
-            var instance = new GeneticAlgorithm({
+            var instance = geneticAlgorithmFactory({
                 individual: () => [],
-                recombine: () => {},
-                mutate: () => {},
-                fitness: () => {},
-                deconstruct: () => {},
-                reconstruct: () => {},
-                perfectFitness: 0,
                 populationSize: 5
             });
             var expected = [[], [], [], [], []];
@@ -59,15 +53,7 @@ describe('GeneticAlgorithm', () => {
 
         it('should use `individual` method to generate population', () => {
             var individual = sinon.spy();
-            var instance = new GeneticAlgorithm({
-                individual: individual,
-                recombine: () => {},
-                mutate: () => {},
-                fitness: () => {},
-                deconstruct: () => {},
-                reconstruct: () => {},
-                perfectFitness: 0
-            });
+            var instance = geneticAlgorithmFactory({ individual: individual });
             instance.generatePopulation();
             expect(individual.callCount).to.be(instance.populationSize);
         });
