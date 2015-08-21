@@ -37,4 +37,17 @@ export default class GeneticAlgorithm {
         }
         return population;
     }
+
+    run() {
+        var population = this.generatePopulation();
+        var generation = 0, found = false;
+        while (!found && ++generation <= this.maxGenerations) {
+            let fitnesses = population.map(this.fitness).sort();
+            console.log(`generation ${generation}: ${fitnesses}`);
+            if (fitnesses[0] === this.perfectFitness) {
+                found = true;
+                break;
+            }
+        }
+    }
 }
