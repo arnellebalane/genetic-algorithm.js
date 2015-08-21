@@ -1,5 +1,4 @@
 import GeneticAlgorithm from '../index';
-import { items } from '../utils';
 
 
 var magic = new GeneticAlgorithm({
