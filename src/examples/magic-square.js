@@ -12,14 +12,13 @@ var magic = new GeneticAlgorithm({
     recombine: () => {},
     mutate: () => {},
     fitness: (individual) => {
-        var sums = [], left = 0, right = 0;
+        var sums = [0, 0];
         for (let i = 0, l = individual.length; i < l; i++) {
             sums.push(sum(individual[i]));
             sums.push(sum(individual.map(row => row[i])));
-            left += individual[i][i];
-            right += individual[i][l - i - 1];
+            sums[0] += individual[i][i];
+            sums[1] += individual[i][l - i - 1];
         }
-        sums.push(left, right);
         var counts = sums.reduce((counts, sum) => {
             counts[sum] = counts.hasOwnProperty(sum) ? counts[sum] + 1 : 1;
             return counts;
