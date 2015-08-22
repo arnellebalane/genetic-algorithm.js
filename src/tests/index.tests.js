@@ -80,7 +80,7 @@ describe('GeneticAlgorithm', () => {
             }
         );
 
-        it('should make use of `fitness` method to rank individuals by their'
+        it('should make use of `fitness` method to rank individuals by their '
             + 'fitness', () => {
                 var instance = geneticAlgorithmFactory();
                 var fitness = sinon.spy(instance, 'fitness');
