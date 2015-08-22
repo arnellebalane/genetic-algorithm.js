@@ -52,6 +52,10 @@ export default class GeneticAlgorithm {
         });
     }
 
+    getSurvivors(population) {
+        return population.slice(0, this.populationSize * this.survivalRate);
+    }
+
     run() {
         var population = this.generatePopulation();
         var generation = 0;
@@ -61,8 +65,7 @@ export default class GeneticAlgorithm {
                 return population[0];
             }
 
-            let survivors = population.slice(0,
-                this.populationSize * this.survivalRate);
+            let survivors = this.getSurvivors(population);
         }
     }
 }

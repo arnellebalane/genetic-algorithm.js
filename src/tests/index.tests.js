@@ -89,4 +89,29 @@ describe('GeneticAlgorithm', () => {
             }
         );
     });
+
+    describe('getSurvivors(population)', () => {
+        it('should return correct number of survivors', () => {
+            var instance = geneticAlgorithmFactory({
+                populationSize: 10,
+                survivalRate: 0.2
+            });
+            var population = instance.generatePopulation();
+            var survivors = instance.getSurvivors(population);
+            var expected = Math.ceil(instance.populationSize
+                * instance.survivalRate);
+            expect(survivors.length).to.be(expected);
+        });
+
+        it('should get survivors from start of the population list', () => {
+            var instance = geneticAlgorithmFactory({
+                populationSize: 10,
+                survivalRate: 0.2
+            });
+            var population = instance.generatePopulation();
+            var survivors = instance.getSurvivors(population);
+            var expected = [population[0], population[1]];
+            expect(survivors).to.eql(expected);
+        });
+    });
 });
