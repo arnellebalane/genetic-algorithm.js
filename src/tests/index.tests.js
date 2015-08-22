@@ -13,6 +13,7 @@ function geneticAlgorithmFactory(options = {}) {
         fitness: () => {},
         deconstruct: () => {},
         reconstruct: () => {},
+        rank: () => {},
         perfectFitness: 0
     };
     return new GeneticAlgorithm(merge(defaultOptions, options));

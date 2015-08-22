@@ -9,7 +9,8 @@ const properties = {
     fitness: { required: true, type: 'function' },
     deconstruct: { required: true, type: 'function' },
     reconstruct: { required: true, type: 'function' },
-    perfectFitness: { required: true }
+    rank: { required: true, type: 'number' },
+    perfectFitness: { required: true, type: 'number' }
 };
 
 
@@ -38,16 +39,30 @@ export default class GeneticAlgorithm {
         return population;
     }
 
+    rankPopulation(population) {
+        return population.sort((a, b) => {
+            var fa = this.fitness(a);
+            var fb = this.fitness(b);
+            if (fa < fb) {
+                return -1 * this.rank;
+            } else if (fb < fa) {
+                return 1 * this.rank;
+            }
+            return 0;
+        });
+    }
+
     run() {
         var population = this.generatePopulation();
-        var generation = 0, found = false;
-        while (!found && ++generation <= this.maxGenerations) {
-            let fitnesses = population.map(this.fitness).sort();
-            console.log(`generation ${generation}: ${fitnesses}`);
-            if (fitnesses[0] === this.perfectFitness) {
-                found = true;
-                break;
+        var generation = 0;
+        while (++generation <= this.maxGenerations) {
+            population = this.rankPopulation(population);
+            if (this.fitness(population[0]) === this.perfectFitness) {
+                return population[0];
             }
+
+            let survivors = population.slice(0,
+                this.populationSize * this.survivalRate);
         }
     }
 }

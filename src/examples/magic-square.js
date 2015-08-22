@@ -29,6 +29,7 @@ var magic = new GeneticAlgorithm({
     },
     deconstruct: () => {},
     reconstruct: () => {},
+    rank: 1,
     perfectFitness: 0
 });
 
