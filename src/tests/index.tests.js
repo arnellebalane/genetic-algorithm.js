@@ -7,13 +7,13 @@ import { merge } from '../utils';
 
 function geneticAlgorithmFactory(options = {}) {
     var defaultOptions = {
-        individual: () => {},
+        individual: () => [Math.random(), Math.random(), Math.random()],
         recombine: () => {},
         mutate: () => {},
-        fitness: () => {},
+        fitness: (individual) => individual.reduce((a, b) => a + b, 0),
         deconstruct: () => {},
         reconstruct: () => {},
-        rank: () => {},
+        rank: 1,
         perfectFitness: 0
     };
     return new GeneticAlgorithm(merge(defaultOptions, options));
@@ -43,13 +43,9 @@ describe('GeneticAlgorithm', () => {
 
     describe('generatePopulation()', () => {
         it('should generate population with the correct size', () => {
-            var instance = geneticAlgorithmFactory({
-                individual: () => [],
-                populationSize: 5
-            });
-            var expected = [[], [], [], [], []];
-            var actual = instance.generatePopulation();
-            expect(actual).to.eql(expected);
+            var instance = geneticAlgorithmFactory();
+            var population = instance.generatePopulation();
+            expect(population.length).to.eql(instance.populationSize);
         });
 
         it('should use `individual` method to generate population', () => {
@@ -58,5 +54,39 @@ describe('GeneticAlgorithm', () => {
             instance.generatePopulation();
             expect(individual.callCount).to.be(instance.populationSize);
         });
+    });
+
+    describe('rankPopulation(population)', () => {
+        it('should rank population in ascending order when rank option is '
+            + 'set to 1', () => {
+                var instance = geneticAlgorithmFactory({ rank: 1 });
+                var population = instance.generatePopulation();
+                var expected = population.map(instance.fitness).sort();
+                var actual = instance.rankPopulation(population)
+                    .map(instance.fitness);
+                expect(actual).to.eql(expected);
+            }
+        );
+
+        it('should rank population in descending order when rank option is '
+            + 'set to -1', () => {
+                var instance = geneticAlgorithmFactory({ rank: -1 });
+                var population = instance.generatePopulation();
+                var expected = population.map(instance.fitness)
+                    .sort().reverse();
+                var actual = instance.rankPopulation(population)
+                    .map(instance.fitness);
+                expect(actual).to.eql(expected);
+            }
+        );
+
+        it('should make use of `fitness` method to rank individuals by their'
+            + 'fitness', () => {
+                var instance = geneticAlgorithmFactory();
+                var fitness = sinon.spy(instance, 'fitness');
+                instance.rankPopulation(instance.generatePopulation());
+                expect(fitness.called).to.be(true);
+            }
+        );
     });
 });
