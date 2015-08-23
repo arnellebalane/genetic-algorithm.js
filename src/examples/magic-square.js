@@ -29,7 +29,13 @@ var magic = new GeneticAlgorithm({
     },
     deconstruct: (individual) => individual.reduce((reduced, allele) =>
         reduced.concat(allele), []),
-    reconstruct: () => {},
+    reconstruct: (alleles) => {
+        var individual = [];
+        for (let i = 0, l = Math.sqrt(alleles.length); i < l; i++) {
+            individual.push(alleles.slice(i * l, i * l + l));
+        }
+        return individual;
+    },
     rank: 1,
     perfectFitness: 0
 });
