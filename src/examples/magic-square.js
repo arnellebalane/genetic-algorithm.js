@@ -27,7 +27,8 @@ var magic = new GeneticAlgorithm({
             .reduce((highest, count) => count > highest ? count : highest, 0);
         return sums.length - highest;
     },
-    deconstruct: () => {},
+    deconstruct: (individual) => individual.reduce((reduced, allele) =>
+        reduced.concat(allele), []),
     reconstruct: () => {},
     rank: 1,
     perfectFitness: 0
