@@ -124,4 +124,15 @@ describe('GeneticAlgorithm', () => {
             expect(fitness.calledWith(population[0])).to.be(true);
         });
     });
+
+    describe('deconstruct(individual)', () => {
+        it('should be called with an `individual` as an argument', () => {
+            var deconstruct = sinon.spy();
+            var instance = geneticAlgorithmFactory({
+                deconstruct: deconstruct
+            });
+            var population = instance.generatePopulation();
+            expect(deconstruct.calledWith(population[0])).to.be(true);
+        });
+    });
 });
