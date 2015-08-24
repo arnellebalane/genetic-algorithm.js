@@ -114,4 +114,14 @@ describe('GeneticAlgorithm', () => {
             expect(survivors).to.eql(expected);
         });
     });
+
+    describe('fitness(individual)', () => {
+        it('should be called with an `individual` as an argument', () => {
+            var fitness = sinon.spy();
+            var instance = geneticAlgorithmFactory({ fitness: fitness });
+            var population = instance.generatePopulation();
+            instance.rankPopulation(population);
+            expect(fitness.calledWith(population[0])).to.be(true);
+        });
+    });
 });
