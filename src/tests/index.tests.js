@@ -135,4 +135,19 @@ describe('GeneticAlgorithm', () => {
             expect(deconstruct.calledWith(population[0])).to.be(true);
         });
     });
+
+    describe('reconstruct(alleles)', () => {
+        it('should be called with an `individual`\'s alleles as '
+            + 'arguments', () => {
+                var deconstruct = sinon.stub().returns([1, 2, 3]);
+                var reconstruct = sinon.spy();
+                var instance = geneticAlgorithmFactory({
+                    deconstruct: deconstruct,
+                    reconstruct: reconstruct
+                });
+                var population = instance.generatePopulation();
+                expect(reconstruct.calledWith([1, 2, 3])).to.be(true);
+            }
+        );
+    });
 });
