@@ -5,10 +5,18 @@ import { NotImplementedError } from './errors';
 
 export default class Individual {
     constructor(alleles) {
-        this.alleles = alleles;
+        this._alleles = alleles;
     }
 
-    deconstruct() {
+    get alleles() {
+        return this.deconstruct(this._alleles);
+    }
+
+    set alleles(alleles) {
+        this._alleles = this.reconstruct(alleles);
+    }
+
+    deconstruct(alleles) {
         throw new NotImplementedError(`${this.constructor.name}.deconstruct`);
     }
 
