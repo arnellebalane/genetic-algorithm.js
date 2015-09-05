@@ -1,6 +1,6 @@
 import 'babel/polyfill';
 import Allele from './allele';
-import { NotImplementedError } from './errors';
+import { NotImplementedError } from '../errors';
 
 
 export default class Individual {

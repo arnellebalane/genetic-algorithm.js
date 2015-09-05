@@ -1,5 +1,5 @@
 import 'babel/polyfill';
-import { NotImplementedError } from './errors';
+import { NotImplementedError } from '../errors';
 
 
 export default class Recombination {
