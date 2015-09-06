@@ -13,6 +13,20 @@ export class GeneticAlgorithmError extends Error {
 
 export class NotImplementedError extends GeneticAlgorithmError {
     constructor(message) {
-        super(message);
+        super(`NotImplemented: ${message}`);
+    }
+}
+
+
+export class MissingRequiredPropertyError extends GeneticAlgorithmError {
+    constructor(message) {
+        super(`MissingRequiredProperty: ${message}`);
+    }
+}
+
+
+export class ImproperlyConfiguredError extends GeneticAlgorithmError {
+    constructor(message) {
+        super(`ImproperlyConfigured: ${message}`);
     }
 }
