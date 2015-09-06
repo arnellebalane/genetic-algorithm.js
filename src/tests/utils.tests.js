@@ -49,7 +49,7 @@ describe('utils', () => {
         });
 
         it('should be able to iterate the given object', () => {
-            var object = { a: 'a', b: 'b'};
+            var object = { a: 'a', b: 'b' };
             var iterator = utils.items(object);
 
             var a = iterator.next();
