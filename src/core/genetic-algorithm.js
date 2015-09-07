@@ -10,6 +10,7 @@ import { extend, items } from '../utils';
 const properties = {
     populationSize: { type: 'number' },
     survivalRate: { type: 'number' },
+    maxGenerations: { type: 'number' },
     individual: { type: 'function' },
     selection: { required: true, class: Selection },
     recombination: { required: true, class: Recombination },
@@ -21,6 +22,7 @@ export default class GeneticAlgorithm {
     constructor(options = {}) {
         this.populationSize = 10;
         this.survivalRate = 0.2;
+        this.maxGenerations = 1000;
         extend(this, options);
 
         for (let [key, config] of items(properties)) {
