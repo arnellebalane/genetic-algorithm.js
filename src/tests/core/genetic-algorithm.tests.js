@@ -9,6 +9,7 @@ import { merge } from '../../utils';
 
 function createGeneticAlgorithm(options = {}) {
     var defaultOptions = {
+        individual: () => {},
         selection: new Selection(),
         recombination: new Recombination(),
         mutation: new Mutation()

@@ -10,6 +10,7 @@ import { extend, items } from '../utils';
 const properties = {
     populationSize: { type: 'number' },
     survivalRate: { type: 'number' },
+    individual: { type: 'function' },
     selection: { required: true, class: Selection },
     recombination: { required: true, class: Recombination },
     mutation: { required: true, class: Mutation }
@@ -30,5 +31,13 @@ export default class GeneticAlgorithm {
                 throw new ImproperlyConfiguredError(key);
             }
         }
+    }
+
+    generatePopulation() {
+        var population = [];
+        for (let i = 0; i < this.populationSize; i++) {
+            population.push(this.individual());
+        }
+        return population;
     }
 }
