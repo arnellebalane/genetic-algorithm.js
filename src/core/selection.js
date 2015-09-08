@@ -6,4 +6,8 @@ export default class Selection {
     select(population) {
         throw new NotImplementedError(`${this.constructor.name}.select`);
     }
+
+    rank(population) {
+        throw new NotImplementedError(`${this.constructor.name}.rank`);
+    }
 }
