@@ -17,11 +17,11 @@ export default class Individual {
     }
 
     deconstruct(alleles) {
-        throw new NotImplementedError(`${this.constructor.name}.deconstruct`);
+        return alleles;
     }
 
     reconstruct(alleles) {
-        throw new NotImplementedError(`${this.constructor.name}.reconstruct`);
+        return alleles;
     }
 
     fitness() {
