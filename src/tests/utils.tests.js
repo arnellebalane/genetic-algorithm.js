@@ -84,4 +84,24 @@ describe('utils', () => {
             expect(base).to.eql(expected);
         });
     });
+
+    describe('sum(...values)', () => {
+        it('should return 0 when no values are given', () => {
+            var expected = 0;
+            var actual = utils.sum();
+            expect(actual).to.be(expected);
+        });
+
+        it('should return given value when only one value is given', () => {
+            var expected = 1;
+            var actual = utils.sum(1);
+            expect(actual).to.be(expected);
+        });
+
+        it('should return the sum of many given values', () => {
+            var expected = 15;
+            var actual = utils.sum(1, 2, 3, 4, 5);
+            expect(actual).to.be(expected);
+        });
+    });
 });
