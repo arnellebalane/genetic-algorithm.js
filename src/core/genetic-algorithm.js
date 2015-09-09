@@ -9,7 +9,6 @@ import { extend, items } from '../utils';
 
 const properties = {
     populationSize: { type: 'number' },
-    survivalRate: { type: 'number' },
     selection: { required: true, class: Selection },
     recombination: { required: true, class: Recombination },
     mutation: { required: true, class: Mutation }
