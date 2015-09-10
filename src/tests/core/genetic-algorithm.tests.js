@@ -2,6 +2,7 @@ import 'babel/polyfill';
 import expect from 'expect.js';
 import sinon from 'sinon';
 import GeneticAlgorithm from '../../core/genetic-algorithm';
+import Individual from '../../core/individual';
 import Selection from '../../core/selection';
 import Recombination from '../../core/recombination';
 import Mutation from '../../core/mutation';
@@ -10,7 +11,7 @@ import { merge } from '../../utils';
 
 function createGeneticAlgorithm(options = {}) {
     var defaultOptions = {
-        individual: () => [],
+        individual: () => new Individual(),
         selection: new Selection(),
         recombination: new Recombination(),
         mutation: new Mutation()
@@ -49,6 +50,13 @@ describe('GeneticAlgorithm', () => {
             var instance = createGeneticAlgorithm();
             var population = instance.generatePopulation();
             expect(population.length).to.be(instance.populationSize);
+        });
+
+        it('should generate instances of `Individual` class', () => {
+            var instance = createGeneticAlgorithm();
+            var population = instance.generatePopulation();
+            population.forEach(individual => expect(individual)
+                .to.be.an(Individual));
         });
 
         it('should use `individual` method to create individuals', () => {
