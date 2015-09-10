@@ -1,11 +1,13 @@
 import 'babel/polyfill';
 import Allele from './allele';
-import { NotImplementedError } from '../errors';
+import { NotImplementedError, ImproperlyConfiguredError } from '../errors';
+import { shuffle } from '../utils';
 
 
 export default class Individual {
-    constructor(alleles) {
+    constructor(alleles, possibleAlleles) {
         this._alleles = alleles;
+        this.possibleAlleles = possibleAlleles;
     }
 
     get alleles() {
@@ -26,5 +28,9 @@ export default class Individual {
 
     fitness() {
         throw new NotImplementedError(`${this.constructor.name}.fitness`);
+    }
+
+    allele() {
+        shuffle(this.possibleAlleles)[0];
     }
 }
