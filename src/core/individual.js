@@ -31,6 +31,6 @@ export default class Individual {
     }
 
     allele() {
-        shuffle(this.possibleAlleles)[0];
+        return shuffle(this.possibleAlleles)[0];
     }
 }
