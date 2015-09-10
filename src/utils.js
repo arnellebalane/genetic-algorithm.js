@@ -24,3 +24,8 @@ export function extend(base, extension) {
 export function sum(...values) {
     return values.reduce((total, value) => total + value, 0);
 }
+
+
+export function shuffle(array) {
+    return [...array].sort((a, b) => Math.random() - 0.5);
+}
