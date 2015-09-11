@@ -107,22 +107,22 @@ describe('utils', () => {
 
     describe('shuffle(array)', () => {
         it('should shuffle the given array', () => {
-            var array = [1, 2, 3, 4, 5];
+            var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
             var shuffled = utils.shuffle(array);
             expect(shuffled).to.not.eql(array);
         });
 
         it('should not shuffle given array the same way every time', () => {
-            var array = [1, 2, 3, 4, 5];
+            var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
             var first = utils.shuffle(array);
             var second = utils.shuffle(array);
             expect(first).to.not.eql(second);
         });
 
         it('should not modify the original given array', () => {
-            var array = [1, 2, 3, 4, 5];
+            var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
             var shuffled = utils.shuffle(array);
-            expect(array).to.eql([1, 2, 3, 4, 5]);
+            expect(array).to.eql([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
         });
     });
 });
