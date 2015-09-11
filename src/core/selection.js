@@ -12,7 +12,7 @@ export default class Selection {
     }
 
     rank(population, order = 1) {
-        return population.sort((a, b) => {
+        return [...population].sort((a, b) => {
             if (a.fitness() < b.fitness()) {
                 return -1 * order;
             } else if (b.fitness() < a.fitness()) {
