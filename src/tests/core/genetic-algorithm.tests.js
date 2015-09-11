@@ -34,7 +34,7 @@ describe('GeneticAlgorithm', () => {
 
     it('should throw error when properties are of not the expected class',
         () => {
-            var options = { selection: new Object() };
+            var options = { selection: {} };
             expect(() => createGeneticAlgorithm(options)).to.throwError();
         }
     );
