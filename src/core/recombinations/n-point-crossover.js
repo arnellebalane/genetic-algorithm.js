@@ -4,6 +4,7 @@ import Recombination from '../recombination';
 
 export default class nPointCrossover extends Recombination {
     constructor(n) {
+        super();
         this.n = n;
     }
 
