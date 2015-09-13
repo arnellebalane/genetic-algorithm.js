@@ -1,4 +1,5 @@
 import 'babel/polyfill';
+import Individual from '../individual';
 import Recombination from '../recombination';
 
 
@@ -19,7 +20,9 @@ export default class nPointCrossover extends Recombination {
             [_a, _b] = [_b, _a];
         }
         var last = breakpoints.pop();
-        return [c.concat(_a.slice(last)), d.concat(_b.slice(last))];
+        c = new Individual(c.concat(_a.slice(last)), a.possibleAlleles);
+        d = new Individual(d.concat(_b.slice(last)), a.possibleAlleles);
+        return [c, d];
     }
 
     breakpoints(size) {
