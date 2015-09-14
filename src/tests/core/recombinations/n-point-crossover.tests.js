@@ -56,10 +56,13 @@ describe('nPointCrossover', () => {
 
         it('should return breakpoints in ascending order', () => {
             var recombination = new nPointCrossover(3);
+            var random = sinon.stub(Math, 'random');
+            random.onCall(0).returns(0.5);
+            random.onCall(1).returns(0.3);
+            random.onCall(2).returns(0.8);
             var breakpoints = recombination.breakpoints(10);
-            for (let i = 1; i < breakpoints.length; i++) {
-                expect(breakpoints[i]).to.be.above(breakpoints[i - 1]);
-            }
+            random.restore();
+            expect(breakpoints).to.eql([3, 5, 8]);
         });
     });
 });
