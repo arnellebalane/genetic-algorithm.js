@@ -20,8 +20,10 @@ export default class nPointCrossover extends Recombination {
             [_a, _b] = [_b, _a];
         }
         var last = breakpoints.pop();
-        c = new Individual(c.concat(_a.slice(last)), a.possibleAlleles);
-        d = new Individual(d.concat(_b.slice(last)), a.possibleAlleles);
+        c = c.concat(_a.slice(last)).map(allele => allele.clone());
+        d = d.concat(_b.slice(last)).map(allele => allele.clone());
+        c = new Individual(c, a.possibleAlleles);
+        d = new Individual(d, a.possibleAlleles);
         return [c, d];
     }
 
