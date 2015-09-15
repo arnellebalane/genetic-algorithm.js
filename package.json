@@ -1,7 +1,7 @@
 {
   "name": "genetic-algorithm.js",
   "version": "0.0.0",
-  "description": "genetic algorithm engine",
+  "description": "an extensible genetic algorithm engine",
   "main": "dist/index.js",
   "scripts": {
     "clean": "rm -rf ./dist",
