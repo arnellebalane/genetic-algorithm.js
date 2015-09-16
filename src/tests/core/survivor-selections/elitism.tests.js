@@ -1,7 +1,7 @@
 import 'babel/polyfill';
 import expect from 'expect.js';
 import sinon from 'sinon';
-import ElitismSelection from '../../../core/selections/elitism';
+import ElitismSelection from '../../../core/survivor-selections/elitism';
 
 
 function createPopulation(size = 5) {

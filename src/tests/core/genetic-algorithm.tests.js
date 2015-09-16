@@ -3,7 +3,7 @@ import expect from 'expect.js';
 import sinon from 'sinon';
 import GeneticAlgorithm from '../../core/genetic-algorithm';
 import Individual from '../../core/individual';
-import Selection from '../../core/selection';
+import SurvivorSelection from '../../core/survivor-selection';
 import Recombination from '../../core/recombination';
 import Mutation from '../../core/mutation';
 import { merge } from '../../utils';
@@ -12,7 +12,7 @@ import { merge } from '../../utils';
 function createGeneticAlgorithm(options = {}) {
     var defaultOptions = {
         individual: () => new Individual(),
-        selection: new Selection(),
+        survivorSelection: new SurvivorSelection(),
         recombination: new Recombination(),
         mutation: new Mutation()
     };
@@ -34,7 +34,7 @@ describe('GeneticAlgorithm', () => {
 
     it('should throw error when properties are of not the expected class',
         () => {
-            var options = { selection: {} };
+            var options = { survivorSelection: {} };
             expect(() => createGeneticAlgorithm(options)).to.throwError();
         }
     );

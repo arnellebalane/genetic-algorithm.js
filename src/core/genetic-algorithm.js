@@ -1,5 +1,5 @@
 import 'babel/polyfill';
-import Selection from './selection';
+import SurvivorSelection from './survivor-selection';
 import Recombination from './recombination';
 import Mutation from './mutation';
 import { MissingRequiredPropertyError, ImproperlyConfiguredError }
@@ -11,7 +11,7 @@ const properties = {
     populationSize: { type: 'number' },
     maxGenerations: { type: 'number' },
     individual: { type: 'function' },
-    selection: { required: true, class: Selection },
+    survivorSelection: { required: true, class: SurvivorSelection },
     recombination: { required: true, class: Recombination },
     mutation: { required: true, class: Mutation }
 };

@@ -2,7 +2,7 @@ import 'babel/polyfill';
 import { NotImplementedError } from '../errors';
 
 
-export default class Selection {
+export default class SurvivorSelection {
     constructor(survivalRate) {
         this.survivalRate = survivalRate;
     }
