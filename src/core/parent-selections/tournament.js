@@ -11,15 +11,20 @@ export default class TournamentParentSelection extends ParentSelection {
     select(population) {
         var parents = [];
         while (parents.length !== population.length) {
-            let group = [];
-            while (group.length !== this.k) {
-                let index = Math.floor(Math.random() * population.length);
-                group.push(population[index]);
-            }
+            let group = this.group(population);
             group = this.rank(group);
             parents.push(group[0]);
         }
         return parents;
+    }
+
+    group(population) {
+        var group = [];
+        while (group.length !== this.k) {
+            let index = Math.floor(Math.random() * population.length);
+            group.push(population[index]);
+        }
+        return group;
     }
 
     rank(population, order = 1) {
