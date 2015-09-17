@@ -2,7 +2,7 @@ import 'babel/polyfill';
 import ParentSelection from '../parent-selection';
 
 
-export default class TournamentParentSelector extends ParentSelection {
+export default class TournamentParentSelection extends ParentSelection {
     constructor(k) {
         super();
         this.k = k;
