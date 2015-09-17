@@ -1,7 +1,8 @@
 import 'babel/polyfill';
 import expect from 'expect.js';
 import sinon from 'sinon';
-import ElitismSelection from '../../../core/survivor-selections/elitism';
+import ElitismSurvivorSelection
+    from '../../../core/survivor-selections/elitism';
 
 
 function createPopulation(size = 5) {
@@ -14,25 +15,25 @@ function createPopulation(size = 5) {
 }
 
 
-describe('ElitismSelection', () => {
+describe('ElitismSurvivorSelection', () => {
     it('should return correct number of survivors', () => {
         var population = createPopulation();
-        var selection = new ElitismSelection(0);
+        var selection = new ElitismSurvivorSelection(0);
         var survivors = selection.select(population);
         expect(survivors.length).to.be(0);
 
-        selection = new ElitismSelection(0.5);
+        selection = new ElitismSurvivorSelection(0.5);
         survivors = selection.select(population);
         expect(survivors.length).to.be(2);
 
-        selection = new ElitismSelection(1);
+        selection = new ElitismSurvivorSelection(1);
         survivors = selection.select(population);
         expect(survivors.length).to.be(5);
     });
 
     it('should return the fittest individuals in population', () => {
         var population = createPopulation();
-        var selection = new ElitismSelection(0.5);
+        var selection = new ElitismSurvivorSelection(0.5);
         var survivors = selection.select(population);
         var sorted = population.sort((a, b) => {
             if (a.fitness() < b.fitness()) {
@@ -48,7 +49,7 @@ describe('ElitismSelection', () => {
 
     it('should make use of rank method to rank population', () => {
         var population = createPopulation();
-        var selection = new ElitismSelection(0.5);
+        var selection = new ElitismSurvivorSelection(0.5);
         var rank = sinon.spy(selection, 'rank');
         var survivors = selection.select(population);
         expect(rank.calledOnce).to.be(true);
