@@ -51,6 +51,24 @@ describe('TournamentParentSelection', () => {
         });
     });
 
+    describe('group(population)', () => {
+        it('should return a group with the correct size', () => {
+            var population = createPopulation();
+            var selection = new TournamentParentSelection(3);
+            var group = selection.group(population);
+            expect(group.length).to.be(3);
+        });
+
+        it('should be called with the given population', () => {
+            var population = createPopulation();
+            var selection = new TournamentParentSelection(3);
+            var group = sinon.spy(selection, 'group');
+            var parents = selection.select(population);
+            group.restore();
+            expect(group.alwaysCalledWith(population)).to.be(true);
+        });
+    });
+
     describe('rank(population, order)', () => {
         it('should rank the population by increasing fitness', () => {
             var population = createPopulation(5);
