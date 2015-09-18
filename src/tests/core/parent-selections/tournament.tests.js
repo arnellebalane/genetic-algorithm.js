@@ -24,5 +24,61 @@ describe('TournamentParentSelection', () => {
             var parents = selection.select(population);
             expect(parents.length).to.be(population.length);
         });
+
+        it('should return fittest parents from their groups', () => {
+            var population = createPopulation();
+            var selection = new TournamentParentSelection(3);
+            var group = sinon.stub(selection, 'group');
+            var p = population;
+            group.onCall(0).returns([p[0], p[3], p[2]]);
+            group.onCall(1).returns([p[4], p[1], p[3]]);
+            group.onCall(2).returns([p[1], p[3], p[1]]);
+            group.onCall(3).returns([p[1], p[0], p[3]]);
+            group.onCall(4).returns([p[1], p[2], p[2]]);
+            var parents = selection.select(population);
+            group.restore();
+            expect(parents.map(parent => parent.fitness()))
+                .to.eql([p[3], p[4], p[3], p[3], p[2]].map(a => a.fitness()));
+        });
+
+        it('should not modify the given population', () => {
+            var population = createPopulation();
+            var backupPopulation = [...population];
+            var selection = new TournamentParentSelection(3);
+            var parents = selection.select(population);
+            expect(population.map(a => a.fitness()))
+                .to.eql(backupPopulation.map(a => a.fitness()));
+        });
+    });
+
+    describe('rank(population, order)', () => {
+        it('should rank the population by increasing fitness', () => {
+            var population = createPopulation(5);
+            var selection = new TournamentParentSelection(3);
+            var ranked = selection.rank(population, 1);
+            for (let i = 1; i < ranked.length; i++) {
+                expect(ranked[i].fitness())
+                    .to.be.above(ranked[i - 1].fitness());
+            }
+        });
+
+        it('should rank the population by decreasing fitness', () => {
+            var population = createPopulation(5);
+            var selection = new TournamentParentSelection(3);
+            var ranked = selection.rank(population, -1);
+            for (let i = 1; i < ranked.length; i++) {
+                expect(ranked[i].fitness())
+                    .to.be.below(ranked[i - 1].fitness());
+            }
+        });
+
+        it('should not modify the given population', () => {
+            var population = createPopulation(5);
+            var backupPopulation = [...population];
+            var selection = new TournamentParentSelection(3);
+            var ranked = selection.rank(population, 1);
+            expect(population.map(a => a.fitness()))
+                .to.eql(backupPopulation.map(a => a.fitness()));
+        });
     });
 });
