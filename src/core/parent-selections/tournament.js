@@ -12,7 +12,7 @@ export default class TournamentParentSelection extends ParentSelection {
         var parents = [];
         while (parents.length !== population.length) {
             let group = this.group(population);
-            group = this.rank(group);
+            group = this.rank(group, -1);
             parents.push(group[0]);
         }
         return parents;
