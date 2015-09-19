@@ -37,8 +37,14 @@ describe('TournamentParentSelection', () => {
             group.onCall(4).returns([p[1], p[2], p[2]]);
             var parents = selection.select(population);
             group.restore();
-            expect(parents.map(parent => parent.fitness()))
-                .to.eql([p[3], p[4], p[3], p[3], p[2]].map(a => a.fitness()));
+            var expected = [
+                Math.max(...[p[0], p[3], p[2]].map(a => a.fitness())),
+                Math.max(...[p[4], p[1], p[3]].map(a => a.fitness())),
+                Math.max(...[p[1], p[3], p[1]].map(a => a.fitness())),
+                Math.max(...[p[1], p[0], p[3]].map(a => a.fitness())),
+                Math.max(...[p[1], p[2], p[2]].map(a => a.fitness()))
+            ];
+            expect(parents.map(parent => parent.fitness())).to.eql(expected);
         });
 
         it('should not modify the given population', () => {
