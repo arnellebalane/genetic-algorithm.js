@@ -1,19 +1,26 @@
-import gulp from 'gulp';
-import plumber from 'gulp-plumber';
-import babel from 'gulp-babel';
+const gulp = require('gulp');
+const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
 
 
-gulp.task('scripts', () => {
-    gulp.src(['src/**/*.js'], { base: 'src' })
-        .pipe(plumber())
+const sourcePath = 'source/**/*.js';
+const buildPath = 'build';
+
+
+gulp.task('buildjs', _ => {
+    return gulp.src(sourcePath, { base: 'source' })
         .pipe(babel())
-        .pipe(gulp.dest('dist'))
+        .pipe(uglify())
+        .pipe(gulp.dest(buildPath));
 });
 
 
-gulp.task('watch', () => {
-    gulp.watch(['src/**/*.js'], ['scripts']);
+gulp.task('build', ['buildjs']);
+
+
+gulp.task('watch', _ => {
+    gulp.watch(sourcePath, ['buildjs']);
 });
 
 
-gulp.task('default', ['scripts', 'watch']);
+gulp.task('default', ['build', 'watch']);
